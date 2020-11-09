@@ -1,0 +1,33 @@
+<table *ngIf="allBuy.length !== 0" class="table table-light">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Order Number</th>
+      <th scope="col">name</th>
+      <th scope="col">email</th>
+      <th scope="col">category</th>
+      <th scope="col">product</th>
+      <th scope="col">price</th>
+      <th scope="col">quantity</th>
+      <th scope="col">date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let i of allBuy; index as index">
+      <th scope="row">{{i.orderId}}</th>
+      <td>{{i.name}}</td>
+      <td>{{i.email}}</td>
+      <td>{{i.catName}}</td>
+      <td>{{i.proName}}</td>
+      <td>{{i.price | currency}}</td>
+      <td>{{i.quantity}}</td>
+      <td>{{i.date | date :'dd/MM/yyyy h:mm:ss a '}}</td>
+    </tr>
+
+  </tbody>
+</table>
+
+
+<div class="center" *ngIf="allBuy.length === 0">
+  <h1 class="center-item">You never bought from us</h1>
+  <h1 class="center-item">To you to rejuvenate in a stunning outfit</h1>
+</div>

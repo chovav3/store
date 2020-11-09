@@ -1,0 +1,67 @@
+<nav class="navbar navbar-expand-lg bg-dark sticky-top">
+  <button *ngIf="!mobile" mat-icon-button style="margin-right: -5px;margin-left: -9px;">
+    <mat-icon style="color: aliceblue;" (click)="sidenav.toggle()">menu</mat-icon>
+  </button>
+  <a mat-button style="color: aliceblue; font-size: 25px;" class="navbar-brand" [routerLink]="'/home'">ClothingStore</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <mat-icon style="color: aliceblue;">menu</mat-icon>
+  </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01" >
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0" >
+      <li class="nav-item">
+        <a mat-button [routerLink]="'/home'" style="color: aliceblue;"> Home </a>
+      </li>
+      <li class="nav-item">
+        <a mat-button [routerLink]="'/login'" style="color: aliceblue;"> Login </a>
+      </li>
+      <li class="nav-item">
+        <a mat-button [routerLink]="'/sineup'" style="color: aliceblue;"> Signup </a>
+      </li>
+      <li class="nav-item">
+        <a mat-button [routerLink]="'/about'" style="color: aliceblue;"> About </a>
+      </li>
+      <li class="nav-item">
+        <a mat-button [routerLink]="'/shopHistory'" style="color: aliceblue;"> Shopping history </a>
+      </li>
+    </ul>
+    <ng-template [ngIf]="userMode" class="bg-dark">
+      <div class="dropdown show">
+        <a class="btn btn-secondary bg-dark dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         <span >{{user.name}}</span> &nbsp;
+          <img  mat-card-avatar src="{{user.image}}" alt="User Avatar">
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <a class="dropdown-item" [routerLink]="'/cart'">my cart</a>
+          <button class="dropdown-item" (click)="logOut()">Log Out</button>
+        </div>
+      </div>
+   </ng-template>
+    <button [routerLink]="'/cart'" class="example-icon" aria-label="Example icon-button with share icon">
+      
+      <span class="material-icons">add_shopping_cart</span>    
+      <span style="margin-left: 10px;" *ngIf="cartSize() > 0" matBadge="{{cartSize()}}"></span>
+          </button>
+          
+  </div>
+</nav>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav>
+    <mat-nav-list>
+     <a mat-list-item (click)="sidenav.toggle()" href="" [routerLink]="'/home'"> <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>&nbsp;  Home </a>
+  
+      <a mat-list-item (click)="sidenav.toggle()" href="" [routerLink]="'/login'"><span class="material-icons">login</span> &nbsp; Login </a>
+      <a mat-list-item (click)="sidenav.toggle()" href="" [routerLink]="'/sineup'"><span class="material-icons">lock_open </span> &nbsp; Signup </a>
+      <a mat-list-item (click)="sidenav.toggle()" href="" [routerLink]="'/about'"> <span class="material-icons">history_edu</span> &nbsp; About </a>
+      <a mat-list-item (click)="sidenav.toggle()" href="" [routerLink]="'/shopHistory'"> <span class="material-icons">history_edu</span> &nbsp; Shopping history </a>
+      <a mat-list-item (click)="sidenav.toggle()"  mat-list-item><span class="material-icons">close  </span> &nbsp; Close</a>
+     
+      
+    </mat-nav-list>
+    
+  </mat-sidenav>
+  <mat-sidenav-content>
+
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>

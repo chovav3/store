@@ -1,0 +1,61 @@
+<mat-card class="example-card center bg-dark">
+
+  <mat-card-content>
+    <h1 class="center-item"><b>Sign Up</b></h1>
+    <img class="example-header-image" src="{{image}}" alt="">
+    <span style="cursor: pointer; z-index: 11;position: absolute; margin-top: 80px; margin-left: -3%;"
+      class="material-icons" onclick="document.getElementById('file').click();">camera_enhance</span>
+    <input accept="image/*" type="file" style="display:none;" id="file" name="file" (change)="displayPhoto($event)" />
+    <p>
+      <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-label>Name</mat-label>
+        <input [(ngModel)]="named" type="text" matInput required #nameValid="ngModel">
+        <mat-hint style="color:red;" *ngIf="nameValid.touched && nameValid.errors?.required">Name is required</mat-hint>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-label>Email</mat-label>
+        <input pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" [(ngModel)]="email" matInput type="email"
+          required #emailValid="ngModel">
+        <mat-hint style="color:red;"
+          *ngIf="emailValid.touched && emailValid.errors?.required || emailValid.errors?.pattern">Email is invalid
+        </mat-hint>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-label>Password</mat-label>
+        <input #passValid="ngModel" [(ngModel)]="password" type="password" matInput required minlength="6">
+        <mat-hint style="color:red;"
+          *ngIf="passValid.touched && passValid.errors?.required ||  passValid.errors?.minlength">The password must be 6
+          digits long</mat-hint>
+      </mat-form-field>
+    </p>
+    <div class="tow-fildes">
+      <p>
+        <a style="width: 100%;margin-top: 2.5px;height: 50px;" (click)="openDialog()"
+          class="btn btn-secondary bg-dark dropdown-toggle">+{{callingCode}}</a>
+        <mat-hint style="color:red; font-size: 12px;" *ngIf="callingCodeValid">The callingCode is required</mat-hint>
+      </p>
+      <p>
+        <mat-form-field appearance="outline" style="width: 100%;">
+          <mat-label>Phone</mat-label>
+          <input class="appearance-none" (keydown)="event($event)" #phoneValid="ngModel" [(ngModel)]="phone"
+            type="number" matInput required maxlength="9"
+            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+          <mat-hint style="color:red;"
+            *ngIf="phoneValid.touched && phoneValid.value < 99999999 || phoneValid.touched && phoneValid.value === undefined">
+            The cell phone number is invalid</mat-hint>
+        </mat-form-field>
+      </p>
+    </div>
+    <div class="center-item">
+      <a [routerLink]="'/login'">I already have an account</a>
+    </div>
+    <div class="center-item">
+      <button (click)="sineUp()"
+      [disabled]="passValid.errors?.required || phone < 99999999 || phone === undefined || passValid.errors?.minlength || emailValid.errors?.required || emailValid.errors?.pattern || nameValid.errors?.required"
+        style="color: #73AD21;" mat-stroked-button>Sign Up</button></div>
+  </mat-card-content>
+</mat-card>

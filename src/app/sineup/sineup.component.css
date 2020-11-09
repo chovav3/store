@@ -1,0 +1,47 @@
+.center{
+  margin: auto;
+padding: 10px;
+ margin-top: 10vh;
+border: 3px solid #73AD21;
+width: 50vw; 
+
+}
+.center-item{
+ display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-top: 2vh;
+}
+.example-header-image {
+  background-size: cover;
+  width: 14vh;
+  height:14vh;
+  margin-bottom: 3vh;
+  border-radius: 50%;
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: #73AD21!important;
+}
+
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+  color: #73AD21!important;
+}
+
+.appearance-none::-webkit-outer-spin-button,
+.appearance-none::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .center{
+    width: 100%;
+    padding:10px;
+  }
+}
+
+.tow-fildes {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 5px;
+}

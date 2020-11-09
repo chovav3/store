@@ -1,0 +1,30 @@
+<mat-card class="example-card center bg-dark">
+
+  <mat-card-content>
+    <p class="center-item">Before you start, you must go to the About page and read about the site</p>
+    <h1 class="center-item"><b>Login</b></h1>
+    <p>
+      <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-label>Email</mat-label>
+        <input [(ngModel)]="email" matInput type="email" required #emailValid="ngModel">
+        <mat-hint style="color:red;" *ngIf="emailValid.touched && emailValid.errors?.required">Email is required
+        </mat-hint>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-label>Password</mat-label>
+        <input [(ngModel)]="password" #passValid="ngModel" type="password" matInput required>
+      </mat-form-field>
+      <mat-hint style="color:red;" *ngIf="passValid.touched && passValid.errors?.required">Password is required
+      </mat-hint>
+    </p>
+    <div class="center-item">
+      <a [routerLink]="'/sineup'">I want to register</a>
+    </div>
+    <div class="center-item"><button (click)="login()" style="color: #73AD21;" mat-stroked-button color="primary"
+        [disabled]="passValid.errors?.required || emailValid.errors?.required">Login</button></div>
+    <mat-hint class="center-item" style="color:red;" *ngIf="notFound">Password or email does not exist in the system
+    </mat-hint>
+  </mat-card-content>
+</mat-card>

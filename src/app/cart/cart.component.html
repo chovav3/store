@@ -1,0 +1,48 @@
+<div *ngIf="displayCart() > 0" class="card mb-3 center bg-dark" style="max-width: 540px;">
+  Sum of all items in the cart: {{allPrice | currency}}
+  <div class="row no-gutters center-item ">
+    <button (click)="buyCart()" class="btn btn-outline-success" style="margin: 2px;"><span
+        class="material-icons">shopping_cart</span>
+      <h3 style="display: inline;">buy all cart</h3>
+    </button>
+    <button class="btn btn-outline-success" (click)="removeAllCart()"><span class="material-icons"> delete_forever
+      </span>
+      <h3 style="display: inline;">remove all cart</h3>
+    </button>
+  </div>
+</div>
+
+
+<div *ngIf="displayCart() === 0" class="center">
+  <h1 class="center-item">Your shopping cart is empty!!!</h1>
+  <h1 class="center-item">To get to the shopping page <a style="margin-left: 5px;" [routerLink]="['/home']"> click
+      here</a></h1>
+</div>
+
+<div class="center-item">
+  <div class="example-card">
+    <mat-card *ngFor="let i of data()" class="card-size bg-dark">
+      <mat-card-header>
+        <mat-card-title>{{i.data.name}}</mat-card-title>
+        <mat-card-subtitle>{{i.data.title}}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="{{i.data.image}}" alt="Photo of a Shiba Inu">
+      <p style="margin-bottom: 3px;">price: {{i.data.price | currency}}</p>
+      <p style="margin-bottom: 3px;">Units in Stock: {{i.data.amunt}}</p>
+      <p class="card-text"><small class="text-muted">Last updated
+          {{i.data.date | date :'dd/MM/yyyy h:mm:ss a '}}</small></p>
+
+          <div  *ngIf="i.amount > 0" style="position: relative;">
+            <div style="position: absolute; left: 0;"  (click)="addtocart(i.data,i.amount)"><button class="btn btn-outline-success">+</button></div>
+          <div style="position: absolute; right: 0;"  (click)="removeUnit(i.data.id)"><button class="btn btn-outline-success">-</button></div>
+            <div style="color: #28a745;" class=" center-item">{{i.amount}}</div>
+          </div>
+
+      <!-- <div *ngIf="i.amount > 0" class="row" style="position: absolute;bottom: 2;margin-top: 2px;">
+        <div class="col" (click)="removeUnit(i.data.id)"><button class="btn btn-outline-success">-</button></div>
+        <div style="color: #28a745;" class="col center-item">{{i.amount}}</div>
+        <div class="col" (click)="addtocart(i.data,i.amount)"><button class="btn btn-outline-success">+</button></div>
+      </div> -->
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+
+.card-size{
+  max-width: 17vw;
+  min-width: 17vw;
+}
+
+.center-item{
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2vh;
+}
+
+.center{
+  margin: auto;
+padding: 10px;
+ margin-top: 10vh;
+}
+
+
+@media only screen and (max-width: 600px) {
+ 
+  .card-size{
+    max-width: 100%;
+    min-width: 100%;
+    margin-bottom: 40px;
+  }
+  .example-card {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 5px;
+  float: left;
+  cursor: pointer;
+  }
+  
+}
+
+    .sidenav {
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height: auto;} 
+    }

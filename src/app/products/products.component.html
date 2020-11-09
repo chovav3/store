@@ -1,0 +1,52 @@
+<div *ngIf="prodocts.length !== 0" class="center">
+  <div class="center-item form-inline my-2 my-lg-0 sticky-top" style="margin-top: 10px;">
+    <input [(ngModel)]="search" class="form-control " type="search" placeholder="Search by name" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </div>
+  <div class="center-item">
+    <div class="example-card">
+      <mat-card *ngFor="let i of prodocts | searchItem: search " class="card-size bg-dark">
+        <mat-card-header>
+          <mat-card-title>{{i.name}}</mat-card-title>
+          <mat-card-subtitle>{{i.title}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-spinner *ngIf="portrait"></mat-spinner>
+        <img mat-card-image src="{{i.image}}" (load)="onImageLoad($event)" alt="Photo of a Shiba Inu">
+        <p style="margin-bottom: 3px;">price: {{i.price | currency}}</p>
+        <p>Units in Stock: {{i.amunt}}</p>
+        <p class="card-text"><small class="text-muted">Last updated {{i.date | date :'dd/MM/yyyy h:mm:ss a '}}</small>
+        </p>
+        <div style="position: absolute;bottom: 2;margin-top: 2px;" *ngIf="!test(i.id) > 0">
+          <div class="col" (click)="addtocart(i)"><button class="btn btn-outline-success">Add to cart<span
+                class="material-icons">add_shopping_cart</span></button></div>
+        </div>
+        <!-- <div *ngIf="test(i.id) > 0" class="row" style="position: absolute;bottom: 2;margin-top: 2px;">
+          <div class="col" (click)="removeUnit(i.id)"><button class="btn btn-outline-success">-</button></div>
+          <div style="color: #28a745;" class="col center-item">{{test(i.id)}}</div>
+          <div class="col" (click)="addtocart(i)"><button class="btn btn-outline-success">+</button></div>
+        </div> -->
+        <div *ngIf="test(i.id) > 0" style="position: relative;">
+          <div style="position: absolute; left: 0;"  (click)="addtocart(i)"><button class="btn btn-outline-success">+</button></div>
+        <div style="position: absolute; right: 0;"  (click)="removeUnit(i.id)"><button class="btn btn-outline-success">-</button></div>
+          <div style="color: #28a745;" class=" center-item">{{test(i.id)}}</div>
+        </div>
+        <div class="addthis_inline_share_toolbox_nr8r"></div>
+      </mat-card>
+    </div>
+  </div>
+  <div class="center-item" *ngIf="(prodocts | searchItem: search).length === 0 && search">
+    <h1> <span class="material-icons"> error </span></h1> &nbsp;
+    <h1>Can't find a product that matches the word: {{search}}</h1>
+  </div>
+</div>
+
+<div *ngIf="prodocts.length === 0">
+  <div class="center">
+    <h1>Welcome</h1><br>
+    <h1>Select a category to start shopping</h1>
+    <img height="auto" width="120%" src="https://www.dotweb.co.il/wp-content/uploads/2016/10/Jiffa-Mockup-002.jpg"
+      alt="">
+  </div>
+
+
+</div>

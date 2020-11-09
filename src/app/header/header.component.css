@@ -1,0 +1,11 @@
+.mat-card-avatar {
+  height: 40px;
+  width: 40;
+  border-radius: 50%;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+
+
+
