@@ -10,7 +10,7 @@ export class SearchItemPipe implements PipeTransform {
     if (!data || !search) {
       return data
     }
-    data.filter(d => {
+    data.forEach(d => {
       if (d.name.toLowerCase().indexOf(search.toLowerCase()) !== -1) { arr.push(d) }
     })
     return arr
